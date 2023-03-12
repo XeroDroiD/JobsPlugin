@@ -53,10 +53,10 @@ public class PlayerJob {
 	}
 	
 	public void addLvl(int lvl) {
-		this.lvl += lvl;
+		setLvl(lvl + getLvl());
 	}
 	
 	public void addXp(int xp) {
-		this.xp += xp;
+		setXp(xp + getXp());
 	}
 }
