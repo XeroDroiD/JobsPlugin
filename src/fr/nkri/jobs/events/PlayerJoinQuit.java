@@ -4,15 +4,17 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 import fr.nkri.jobs.MJobs;
 import fr.nkri.jobs.managers.jobs.PlayerJobManager;
+import fr.nkri.jobs.managers.requests.RequestManager;
 import fr.nkri.jobs.utils.JobsUnit;
 
-public class PlayerJoin implements Listener {
+public class PlayerJoinQuit implements Listener {
 
 	private MJobs main;
-	public PlayerJoin(MJobs main) {
+	public PlayerJoinQuit(MJobs main) {
 		this.main = main;
 	}
 	
@@ -32,4 +34,8 @@ public class PlayerJoin implements Listener {
 		player.sendMessage("§7Exp: §e" + PlayerJobManager.getJobs(player).getXp());		
 	}
 	
+	@EventHandler
+	public void onQuit(PlayerQuitEvent e) {
+		RequestManager.sendData();
+	}
 }

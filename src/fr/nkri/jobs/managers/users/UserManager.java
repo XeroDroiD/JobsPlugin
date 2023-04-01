@@ -14,7 +14,7 @@ import fr.nkri.jobs.storage.SqlDataBaseManager;
 
 public class UserManager {
 
-	public List<User> userData;
+	public List<Player> userData;
 	
 	public UserManager() {
 		userData = new ArrayList<>();
@@ -22,7 +22,7 @@ public class UserManager {
 	
 	public void load(Player player) {
 		
-		userData.add(new User(player));
+		userData.add(player);
 		
 		PlayerJobManager.init(player);
 		

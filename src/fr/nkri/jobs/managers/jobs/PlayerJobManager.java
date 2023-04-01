@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import org.bukkit.entity.Player;
 
+import fr.nkri.jobs.managers.requests.RequestManager;
 import fr.nkri.jobs.utils.JobsUnit;
 
 public class PlayerJobManager {
@@ -25,13 +26,16 @@ public class PlayerJobManager {
 		
 		if(jobsUnit != getJobs(player).getJobsUnit()) {
 			
-			/*
-			 * Sauvegarde bdd
-			 */
-			
-			playerMap.get(player).setLvl(0);
-			playerMap.get(player).setXp(0);
+			if(playerMap.get(player).getLvl() != 0 && playerMap.get(player).getXp() != 0) {
+				RequestManager.sendData();
+			}
+
 			playerMap.get(player).setJobsUnit(jobsUnit);
+			playerMap.get(player).setLvl(RequestManager.getLevel(player, jobsUnit.getLvl()));
+			playerMap.get(player).setXp(RequestManager.getLevel(player, jobsUnit.getExp()));
+		}
+		else {
+			player.sendMessage("§cVous déjà activé ce jobs.");
 		}
 	}
 	
