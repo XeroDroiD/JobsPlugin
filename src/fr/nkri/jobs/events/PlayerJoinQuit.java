@@ -26,8 +26,6 @@ public class PlayerJoinQuit implements Listener {
 		main.getUserManager().load(player);
 		
 		PlayerJobManager.setJobs(player, JobsUnit.HUNTER);
-		PlayerJobManager.addExp(player, 30);
-		PlayerJobManager.addLevel(player, 20);
 
 		player.sendMessage("§7Vous êtes: " + PlayerJobManager.getJobs(player).getJobsUnit().getDisplay());
 		player.sendMessage("§7Level: §e" + PlayerJobManager.getJobs(player).getLvl());

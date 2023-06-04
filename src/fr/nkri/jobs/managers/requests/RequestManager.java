@@ -18,8 +18,7 @@ public class RequestManager {
 		
 		try {
 			
-			PreparedStatement preparedStatement = SqlDataBaseManager.getConnection()
-					.prepareStatement("SELECT " + lvl + " FROM users WHERE uuid= ?");
+			PreparedStatement preparedStatement = SqlDataBaseManager.getConnection().prepareStatement("SELECT " + lvl + " FROM users WHERE uuid= ?");
 			preparedStatement.setString(1, player.getUniqueId().toString());
 			ResultSet rs = preparedStatement.executeQuery();
 			
@@ -40,8 +39,7 @@ public class RequestManager {
 	public static void setLevel(Player player, int lvl, String lvlRequest) {
 		
 		try {
-			PreparedStatement preparedStatement = SqlDataBaseManager.getConnection()
-					.prepareStatement("UPDATE users SET " +lvlRequest+ "= ? WHERE uuid= ?");
+			PreparedStatement preparedStatement = SqlDataBaseManager.getConnection().prepareStatement("UPDATE users SET " +lvlRequest+ "= ? WHERE uuid= ?");
 			preparedStatement.setInt(1, lvl);
 			preparedStatement.setString(2, player.getUniqueId().toString());
 			preparedStatement.executeUpdate();
@@ -60,8 +58,7 @@ public class RequestManager {
 		
 		try {
 			
-			PreparedStatement preparedStatement = SqlDataBaseManager.getConnection()
-					.prepareStatement("SELECT " + exp + " FROM users WHERE uuid= ?");
+			PreparedStatement preparedStatement = SqlDataBaseManager.getConnection().prepareStatement("SELECT " + exp + " FROM users WHERE uuid= ?");
 			preparedStatement.setString(1, player.getUniqueId().toString());
 			ResultSet rs = preparedStatement.executeQuery();
 			

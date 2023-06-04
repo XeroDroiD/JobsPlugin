@@ -35,7 +35,7 @@ public class PlayerJobManager {
 			playerMap.get(player).setXp(RequestManager.getLevel(player, jobsUnit.getExp()));
 		}
 		else {
-			player.sendMessage("§cVous déjà activé ce jobs.");
+			player.sendMessage("§cVous avez déjà activé ce jobs.");
 		}
 	}
 	

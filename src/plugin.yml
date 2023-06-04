@@ -4,3 +4,4 @@ author: NKRI
 version: 1.0
 commands:
   jobs:
+  job:

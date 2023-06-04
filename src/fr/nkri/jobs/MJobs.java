@@ -5,7 +5,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.nkri.jobs.commands.CommandJobs;
+import fr.nkri.jobs.commands.CommandMenu;
+import fr.nkri.jobs.events.PlayerInventory;
 import fr.nkri.jobs.events.PlayerJoinQuit;
+import fr.nkri.jobs.events.PlayerProgresse;
 import fr.nkri.jobs.managers.jobs.PlayerJobManager;
 import fr.nkri.jobs.managers.requests.RequestManager;
 import fr.nkri.jobs.managers.users.UserManager;
@@ -27,8 +30,11 @@ public class MJobs extends JavaPlugin{
 		userManager = new UserManager();
 		
 		getServer().getPluginManager().registerEvents(new PlayerJoinQuit(this), this);
+		getServer().getPluginManager().registerEvents(new PlayerInventory(), this);
+		getServer().getPluginManager().registerEvents(new PlayerProgresse(), this);
 		getCommand("jobs").setExecutor(new CommandJobs());
-		
+		getCommand("job").setExecutor(new CommandMenu());
+
 		Bukkit.getScheduler().runTaskTimerAsynchronously(this, new Runnable() {
 			
 			@Override
@@ -36,6 +42,7 @@ public class MJobs extends JavaPlugin{
 				RequestManager.sendData();
 			}
 		}, 0L, 20*30);
+		
 	}
 	
 	private void setupDataBase() {
