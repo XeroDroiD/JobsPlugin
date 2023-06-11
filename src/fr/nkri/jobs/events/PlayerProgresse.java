@@ -7,6 +7,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 
 import fr.nkri.jobs.managers.jobs.PlayerJobManager;
+import fr.nkri.jobs.managers.jobs.utils.LevelUpdate;
 import fr.nkri.jobs.utils.JobsUnit;
 
 public class PlayerProgresse implements Listener{
@@ -20,13 +21,13 @@ public class PlayerProgresse implements Listener{
 			if(PlayerJobManager.getJobs(player).getJobsUnit() == JobsUnit.HUNTER) {
 				switch (e.getEntity().getType()) {
 				case ZOMBIE:
-					addXp(player, 10);
+					addXpHunter(player, 1);
 					break;
 				case SKELETON:
-					addXp(player, 20);
+					addXpHunter(player, 2);
 					break;
 				case CREEPER:
-					addXp(player, 30);
+					addXpHunter(player, 3);
 					break;
 				default:
 					break;
@@ -42,13 +43,13 @@ public class PlayerProgresse implements Listener{
 		if(PlayerJobManager.getJobs(player).getJobsUnit() == JobsUnit.MINER) {
 			switch (e.getBlock().getType()) {
 			case DIAMOND_ORE:
-				addXp(player, 10);
+				addXpMiner(player, 1);
 				break;
 			case COAL_ORE:
-				addXp(player, 20);
+				addXpMiner(player, 2);
 				break;
 			case IRON_ORE:
-				addXp(player, 30);
+				addXpMiner(player, 3);
 				break;
 			default:
 				break;
@@ -58,15 +59,15 @@ public class PlayerProgresse implements Listener{
 		if(PlayerJobManager.getJobs(player).getJobsUnit() == JobsUnit.FARMER) {
 			switch (e.getBlock().getType()) {
 			case MELON_BLOCK:
-				addXp(player, 10);
+				addXpFarmer(player, 1);
 				break;
 			case CARROT:
 				if(e.getBlock().getData() == 7) {
-					addXp(player, 20);
+					addXpFarmer(player, 2);
 				}
 				break;
 			case SUGAR_CANE_BLOCK:
-				addXp(player, 30);
+				addXpFarmer(player, 3);
 				break;
 			default:
 				break;
@@ -76,9 +77,23 @@ public class PlayerProgresse implements Listener{
 	}
 	
 	
-	private void addXp(Player player, int xp) {
+	private void addXpHunter(Player player, int xp) {
 		PlayerJobManager.getJobs(player).addXp(xp);
 		player.sendMessage("§9§lJobs §r§7(§cHunter§7): §bVous venez de reçevoir §l"+ xp + "expériences§r§b !");
+		LevelUpdate.update(player);
+	}
+	
+	@SuppressWarnings("unused")
+	private void addXpFarmer(Player player, int xp) {
+		PlayerJobManager.getJobs(player).addXp(xp);
+		player.sendMessage("§9§lJobs §r§7(§aFarmeur§7): §bVous venez de reçevoir §l"+ xp + "expériences§r§b !");
+		LevelUpdate.update(player);
+	}
+	
+	private void addXpMiner(Player player, int xp) {
+		PlayerJobManager.getJobs(player).addXp(xp);
+		player.sendMessage("§9§lJobs §r§7(§eMineur§7): §bVous venez de reçevoir §l"+ xp + "expériences§r§b !");
+		LevelUpdate.update(player);
 	}
 
 }

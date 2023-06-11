@@ -102,7 +102,6 @@ public class RequestManager {
 			
 			setLevel(entry.getKey(), entry.getValue().getLvl(), jobsUnit.getLvl());
 			setExp(entry.getKey(), entry.getValue().getXp(), jobsUnit.getExp());
-			System.out.println("Player: " + entry.getKey() + " Level: " + entry.getValue().getLvl() + " Type: " + jobsUnit.getLvl());
 		}
 	}
 }

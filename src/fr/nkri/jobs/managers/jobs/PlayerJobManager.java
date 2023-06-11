@@ -33,6 +33,7 @@ public class PlayerJobManager {
 			playerMap.get(player).setJobsUnit(jobsUnit);
 			playerMap.get(player).setLvl(RequestManager.getLevel(player, jobsUnit.getLvl()));
 			playerMap.get(player).setXp(RequestManager.getLevel(player, jobsUnit.getExp()));
+			
 		}
 		else {
 			player.sendMessage("§cVous avez déjà activé ce jobs.");
@@ -45,6 +46,10 @@ public class PlayerJobManager {
 	
 	public static void addExp(Player player, int exp) {
 		playerMap.get(player).addXp(exp);
+	}
+	
+	public static void setExp(Player player, int exp) {
+		playerMap.get(player).setXp(exp);
 	}
 	
 	public static int getExp(Player player) {

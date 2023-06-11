@@ -10,6 +10,7 @@ import fr.nkri.jobs.events.PlayerInventory;
 import fr.nkri.jobs.events.PlayerJoinQuit;
 import fr.nkri.jobs.events.PlayerProgresse;
 import fr.nkri.jobs.managers.jobs.PlayerJobManager;
+import fr.nkri.jobs.managers.jobs.utils.LevelUpdate;
 import fr.nkri.jobs.managers.requests.RequestManager;
 import fr.nkri.jobs.managers.users.UserManager;
 import fr.nkri.jobs.storage.SqlDataBaseManager;
@@ -28,6 +29,8 @@ public class MJobs extends JavaPlugin{
 		
 		playerJobManager = new PlayerJobManager();
 		userManager = new UserManager();
+		
+		LevelUpdate.setupLevel();
 		
 		getServer().getPluginManager().registerEvents(new PlayerJoinQuit(this), this);
 		getServer().getPluginManager().registerEvents(new PlayerInventory(), this);
